@@ -24,7 +24,7 @@ jobs:
         sudo apt install -y --no-install-recommends cmake ninja-build gcc-mingw-w64-x86-64
 
     # Get the sources
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     # Save the "build/" folder path
     - name: Set reusable strings
@@ -39,7 +39,7 @@ jobs:
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -G Ninja
-        -D CMAKE_SYSTEM_NAME=Windows 
+        -D CMAKE_SYSTEM_NAME=Windows
         -D CMAKE_C_COMPILER=/usr/bin/x86_64-w64-mingw32-gcc
         -D CMAKE_BUILD_TYPE=Release
         -D BUILD_SHARED_LIBS=${{ matrix.shared_libs }}
@@ -59,7 +59,7 @@ jobs:
 
     # Upload the "build/" directory as artifact
     - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: cross-compilation-build-sharedlib-${{ matrix.shared_libs }}
         path: ${{ steps.strings.outputs.build-output-dir }}
@@ -72,9 +72,9 @@ jobs:
     strategy:
       matrix:
         shared_libs: ['ON','OFF']
-    
+
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     # Save the "build/" folder path
     - name: Set reusable strings
@@ -85,7 +85,7 @@ jobs:
 
     # Download the "build/" directory
     - name: Download build artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: cross-compilation-build-sharedlib-${{ matrix.shared_libs }}
         path: ${{ steps.strings.outputs.build-output-dir }}
