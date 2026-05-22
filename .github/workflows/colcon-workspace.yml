@@ -24,12 +24,20 @@ jobs:
             ros_distribution: jazzy
             ros_version: 2
 
+          - docker_image: ubuntu:26.04
+            ros_distribution: lyrical
+            ros_version: 2
+
           - docker_image: almalinux:8
             ros_distribution: humble
             ros_version: 2
 
           - docker_image: almalinux:9
             ros_distribution: jazzy
+            ros_version: 2
+
+          - docker_image: almalinux:10
+            ros_distribution: lyrical
             ros_version: 2
 
     container:
@@ -64,7 +72,7 @@ jobs:
 
     strategy:
       matrix:
-        ros_distribution: [humble, jazzy]
+        ros_distribution: [humble, jazzy, lyrical]
 
     steps:
       - uses: actions/checkout@v6

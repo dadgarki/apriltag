@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        version: ["20.04", "22.04", "24.04"]
+        version: ["20.04", "22.04", "24.04", "26.04"]
         c_compiler: [gcc, clang]
         shared_libs: ['ON', 'OFF']
         # manual selection for the latest, non-default, compilers
