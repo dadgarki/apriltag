@@ -24,6 +24,10 @@ jobs:
             ros_distribution: jazzy
             ros_version: 2
 
+          - docker_image: ubuntu:26.04
+            ros_distribution: lyrical
+            ros_version: 2
+
           - docker_image: almalinux:8
             ros_distribution: humble
             ros_version: 2
@@ -32,11 +36,15 @@ jobs:
             ros_distribution: jazzy
             ros_version: 2
 
+          - docker_image: almalinux:10
+            ros_distribution: lyrical
+            ros_version: 2
+
     container:
       image: ${{ matrix.docker_image }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Setup ROS environment
         uses: ros-tooling/setup-ros@v0.7
@@ -64,12 +72,12 @@ jobs:
 
     strategy:
       matrix:
-        ros_distribution: [humble, jazzy]
+        ros_distribution: [humble, jazzy, lyrical]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.10"
 

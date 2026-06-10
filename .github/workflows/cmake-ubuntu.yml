@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        version: ["20.04", "22.04", "24.04"]
+        version: ["20.04", "22.04", "24.04", "26.04"]
         c_compiler: [gcc, clang]
         shared_libs: ['ON', 'OFF']
         # manual selection for the latest, non-default, compilers
@@ -35,7 +35,7 @@ jobs:
         apt install -y --no-install-recommends cmake ninja-build ${{ matrix.c_compiler }}
         apt install -y --no-install-recommends python3-dev python3-numpy
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Set reusable strings
       id: strings
